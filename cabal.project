@@ -1,9 +1,7 @@
 index-state: 2022-04-21T00:00:00Z
 
 packages:
-  prototype-beta-api
-  prototype-beta-contracts
-  prototype-beta-tx-builder
+  agora-types
 
 source-repository-package
   type: git
