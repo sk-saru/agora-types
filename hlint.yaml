@@ -1,0 +1,11 @@
+---
+# https://github.com/ndmitchell/hlint/blob/master/data/hlint.yaml
+- group: { name: generalise, enabled: true }
+- group: { name: generalise-for-conciseness, enabled: true }
+# Despite the name, these hints are generally useful
+- group: { name: teaching, enabled: true }
+# These hints are same if all matched functions are monomorphic, or polymorphic
+# but don't have adhoc polymorphism
+- group: { name: monomorphic, enabled: true }
+# Hints that use the 'extra' library
+- group: { name: extra, enabled: true }
