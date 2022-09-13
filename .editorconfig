@@ -1,0 +1,23 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.hs]
+indent_style = space
+; We don't force indentation to be a multiple of 2 because of let/in
+; indent_size = 2
+max_line_length = 120
+
+[*.{js,ts,sol}]
+indent_style = space
+indent_size = 2
+max_line_length = 120
+
+[*.{json,yaml,yml}]
+indent_style = space
+indent_size = 2
+max_line_length = unset
