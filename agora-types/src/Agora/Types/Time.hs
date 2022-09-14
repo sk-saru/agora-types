@@ -14,6 +14,7 @@ module Agora.Types.Time (
 import GHC.Generics (Generic)
 import Plutus.V2.Ledger.Api (POSIXTime)
 import PlutusTx qualified
+import Prelude (Eq, Ord, Show)
 
 --------------------------------------------------------------------------------
 

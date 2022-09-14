@@ -15,7 +15,7 @@ module Agora.Types.IsData (
 
 import Data.Coerce (coerce)
 import Data.Functor.Identity (Identity (Identity, runIdentity))
-import Data.Maybe (fromJust)
+import Data.Maybe (Maybe (Nothing), fromJust)
 import Data.Proxy (Proxy (Proxy))
 import GHC.Base (Type)
 import Generics.SOP (
@@ -42,6 +42,7 @@ import PlutusTx (
   fromData,
   toData,
  )
+import Prelude (Enum (fromEnum, toEnum), Integer, Integral (toInteger), Num (fromInteger), error, fmap, ($), (.), (<$>))
 
 --------------------------------------------------------------------------------
 -- ProductIsData
