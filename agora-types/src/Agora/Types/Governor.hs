@@ -21,6 +21,8 @@ import GHC.Generics (Generic)
 import Ledger.Value (AssetClass)
 import Plutus.V2.Ledger.Tx (TxOutRef)
 import PlutusTx qualified
+import PlutusTx.Integer (Integer)
+import Prelude (Bounded, Enum, Show)
 
 --------------------------------------------------------------------------------
 

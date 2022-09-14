@@ -1,9 +1,8 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DerivingVia #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# OPTIONS_GHC -Wno-missing-deriving-strategies #-}
-{-# OPTIONS_GHC -Wno-missing-methods #-}
 
 -- | Vote-lockable stake UTXOs holding GT.
 module Agora.Types.Stake (
@@ -21,6 +20,8 @@ import GHC.Generics (Generic)
 import Generics.SOP qualified as SOP
 import Plutus.V2.Ledger.Api (Credential)
 import PlutusTx qualified
+import PlutusTx.Prelude (Integer, Maybe)
+import Prelude (Show)
 
 --------------------------------------------------------------------------------
 
@@ -169,4 +170,4 @@ data StakeDatum = StakeDatum
     )
     via (ProductIsData StakeDatum)
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------

@@ -1,6 +1,5 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE DerivingVia #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE RankNTypes #-}
@@ -25,7 +24,6 @@ module Agora.Types.Proposal (
 ) where
 
 import Agora.Types.SafeMoney (GTTag)
-import Data.Map.Strict qualified as StrictMap
 import Data.Tagged (Tagged)
 import GHC.Generics (Generic)
 import Generics.SOP qualified as SOP
@@ -39,6 +37,9 @@ import PlutusTx qualified
 
 import Agora.Types.IsData (EnumIsData (EnumIsData), ProductIsData (ProductIsData))
 import Agora.Types.Time (ProposalStartingTime, ProposalTimingConfig)
+import PlutusTx.AssocMap qualified as AssocMap
+import PlutusTx.Prelude (Integer, Maybe, const, (.))
+import Prelude (Bounded, Enum, Eq, Ord, Show)
 
 --------------------------------------------------------------------------------
 -- Haskell-land
@@ -204,7 +205,7 @@ PlutusTx.makeIsDataIndexed 'ProposalThresholds [('ProposalThresholds, 0)]
 --
 --     @since 0.1.0
 newtype ProposalVotes = ProposalVotes
-  { getProposalVotes :: StrictMap.Map ResultTag Integer
+  { getProposalVotes :: AssocMap.Map ResultTag Integer
   }
   deriving stock
     ( -- | @since 0.1.0
@@ -224,11 +225,11 @@ newtype ProposalVotes = ProposalVotes
 -- | Create a 'ProposalVotes' that has the same shape as the 'effects' field.
 --
 --     @since 0.1.0
-emptyVotesFor :: forall a. StrictMap.Map ResultTag a -> ProposalVotes
-emptyVotesFor = ProposalVotes . StrictMap.mapWithKey (const . const 0)
+emptyVotesFor :: forall a. AssocMap.Map ResultTag a -> ProposalVotes
+emptyVotesFor = ProposalVotes . AssocMap.mapWithKey (const . const 0)
 
 -- | @since 0.3.0
-type ProposalEffectGroup = StrictMap.Map ValidatorHash (DatumHash, Maybe ScriptHash)
+type ProposalEffectGroup = AssocMap.Map ValidatorHash (DatumHash, Maybe ScriptHash)
 
 -- | Haskell-level datum for Proposal scripts.
 --
@@ -241,7 +242,7 @@ data ProposalDatum = ProposalDatum
   -- TODO: could we encode this more efficiently?
   -- This is shaped this way for future proofing.
   -- See https://github.com/Liqwid-Labs/agora/issues/39
-  , effects :: StrictMap.Map ResultTag ProposalEffectGroup
+  , effects :: AssocMap.Map ResultTag ProposalEffectGroup
   -- ^ Effect lookup table. First by result, then by effect hash.
   , status :: ProposalStatus
   -- ^ The status the proposal is in.

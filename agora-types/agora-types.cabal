@@ -8,6 +8,7 @@ common lang
   default-language: Haskell2010
   default-extensions:
     ImportQualifiedPost
+    NoImplicitPrelude
   ghc-options:
     -Weverything -Werror
     -- For plutus
@@ -15,7 +16,6 @@ common lang
     -Wno-missing-local-signatures
     -Wno-missing-safe-haskell-mode
     -Wno-unsafe
-    -Wno-implicit-prelude
   build-depends:
     , base ^>=4.14.3.0
 
